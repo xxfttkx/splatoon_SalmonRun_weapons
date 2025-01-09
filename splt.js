@@ -8,5 +8,5 @@ Splatoon3.options.cache = {
 };
 var res = await Splatoon3.getSalmonRun();
 var weapons = res.regularSchedules[0].weapons;
-var array = [weapons[0].name,weapons[2].name,weapons[2].name,weapons[3].name]
+var array = [weapons[0].name,weapons[1].name,weapons[2].name,weapons[3].name]
 console.log(JSON.stringify(array));
