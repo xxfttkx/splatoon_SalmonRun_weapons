@@ -19,7 +19,7 @@ import path from 'path'; // 用于处理文件路径
       <title>UTF-8 Example</title>
     </head>
     <body>
-      <!-- 你的 HTML 内容 -->
+      你的 HTML 内容
     </body>
     </html>
   `);
