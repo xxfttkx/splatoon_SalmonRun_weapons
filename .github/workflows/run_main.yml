@@ -1,6 +1,7 @@
 name: Run main.py every 8 hours
 
 on:
+  workflow_dispatch:
   schedule:
     # 使用 Cron 表达式设置每 8 小时运行一次
     - cron: "0 */8 * * *"  # 每 8 小时运行一次
