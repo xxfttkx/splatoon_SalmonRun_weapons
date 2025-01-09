@@ -2,7 +2,11 @@ import puppeteer from 'puppeteer';
 import path from 'path'; // 用于处理文件路径
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+  
   const page = await browser.newPage();
   const filePath = path.resolve('output/salmonRun.html');
   // 加载 HTML 文件
