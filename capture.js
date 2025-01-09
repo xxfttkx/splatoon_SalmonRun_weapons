@@ -3,7 +3,7 @@ import path from 'path'; // 用于处理文件路径
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   
