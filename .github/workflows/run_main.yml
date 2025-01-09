@@ -19,6 +19,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 安装支持日语的字体
+      - name: Install Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk 
+
       # 设置 Python 环境
       - name: Set up Python
         uses: actions/setup-python@v4
