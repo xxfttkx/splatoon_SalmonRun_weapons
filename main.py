@@ -54,4 +54,4 @@ if __name__ == "__main__":
     # 保存到文件
     with open("salmonRun.html", "w", encoding="utf-8") as file:
         file.write(html)
-    print("HTML 文件已生成: salmonRun.html")
+    subprocess.run(["node", "capture.js"])
