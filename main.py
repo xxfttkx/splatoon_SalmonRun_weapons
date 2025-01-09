@@ -52,6 +52,6 @@ if __name__ == "__main__":
     for weapon in weapons:
         html+=fetch_weapon(url,weapon)
     # 保存到文件
-    with open("salmonRun.html", "w", encoding="utf-8") as file:
+    with open("output/salmonRun.html", "w", encoding="utf-8") as file:
         file.write(html)
     subprocess.run(["node", "capture.js"])
