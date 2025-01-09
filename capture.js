@@ -13,17 +13,21 @@ import path from 'path'; // 用于处理文件路径
   // 加载 HTML 文件
   const response = await page.goto(`file://${filePath}`);
 
-  await page.setContent((await response.buffer()).toString('utf8'));
+  // await page.setContent((await response.buffer()).toString('utf8'));
 
   // 设置截图尺寸
   await page.setViewport({
     width: 1400, height: 300
   });
 
-  // 截图保存为文件
-  await page.screenshot({ path: 'output/output.png', fullPage: true });
+  
+  setTimeout(async () => {
+    // 截图保存为文件
+    await page.screenshot({ path: 'output/output.png', fullPage: true });
+    console.log('Screenshot saved to output.png');
+    await browser.close();
+  }, 2000); // 延时 2000 毫秒 (2 秒)
+  
 
-  console.log('Screenshot saved to output.png');
-
-  await browser.close();
+  
 })();
