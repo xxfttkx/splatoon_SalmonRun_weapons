@@ -4,7 +4,10 @@ import path from 'path'; // 用于处理文件路径
 (async () => {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--locale=ja-JP', '--lang=ja-JP', '--enable-utf8'],
+    defaultViewport: {
+      encoding: 'UTF-8'
+    }
   });
 
   const page = await browser.newPage();
@@ -15,7 +18,10 @@ import path from 'path'; // 用于处理文件路径
 
   // 设置截图尺寸
   await page.setViewport({
-    width: 1400, height: 300
+    width: 1400, height: 300, 
+    deviceScaleFactor: 1, // 缩放因子
+    isMobile: false, // 是否是移动设备
+    hasTouch: false // 是否支持触摸
   });
 
   // 截图保存为文件
