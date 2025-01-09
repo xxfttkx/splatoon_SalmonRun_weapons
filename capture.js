@@ -9,26 +9,20 @@ import path from 'path'; // 用于处理文件路径
       encoding: 'UTF-8'
     }
   });
-  
+
   const page = await browser.newPage();
-  await page.setContent(`
-    <!DOCTYPE html>
-    <html lang="ja">
-    <head>
-      <meta charset="UTF-8">
-      <title>UTF-8 Example</title>
-    </head>
-    <body>
-      你的 HTML 内容
-    </body>
-    </html>
-  `);
   const filePath = path.resolve('output/salmonRun.html');
+
   // 加载 HTML 文件
-  //await page.goto(`file://${filePath}`);
+  await page.goto(`file://${filePath}`);
 
   // 设置截图尺寸
-  await page.setViewport({ width: 1400, height: 300 });
+  await page.setViewport({
+    width: 1400, height: 300, 
+    deviceScaleFactor: 1, // 缩放因子
+    isMobile: false, // 是否是移动设备
+    hasTouch: false // 是否支持触摸
+  });
 
   // 截图保存为文件
   await page.screenshot({ path: 'output/output.png', fullPage: true });
