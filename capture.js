@@ -11,6 +11,18 @@ import path from 'path'; // 用于处理文件路径
   });
   
   const page = await browser.newPage();
+  await page.setContent(`
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+      <meta charset="UTF-8">
+      <title>UTF-8 Example</title>
+    </head>
+    <body>
+      <!-- 你的 HTML 内容 -->
+    </body>
+    </html>
+  `);
   const filePath = path.resolve('output/salmonRun.html');
   // 加载 HTML 文件
   await page.goto(`file://${filePath}`);
