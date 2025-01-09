@@ -8,3 +8,7 @@
 ## 参考
 
 [splatoon3Map](https://github.com/PBnicad/splatoon3Map)
+
+## 没参考
+
+[salmonrun schedule](https://splatoon3.ink/salmonrun)
