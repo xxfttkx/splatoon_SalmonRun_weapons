@@ -5,6 +5,8 @@ Salmon Run武器相关数据爬取
 
 ![愿你我屎拉的通](output.png)
 
+- [ ] adjust href
+
 ## 参考
 
 [splatoon3Map](https://github.com/PBnicad/splatoon3Map)
