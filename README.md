@@ -7,7 +7,9 @@ Salmon Run武器相关数据爬取
 
 - [ ] adjust href
 - [ ] add type
-- [ ] add border
+- [x] add border
+- [ ] adjust height
+- [ ] adjust width
 
 ## 参考
 
