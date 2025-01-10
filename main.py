@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import subprocess
 import json
-import os
+# import os
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -54,8 +54,8 @@ if __name__ == "__main__":
         html+=fetch_weapon(url,weapon)
     # 保存到文件
     # 检查 output 文件夹是否存在
-    if not os.path.exists("output"):
-        os.makedirs("output")
-    with open("output/salmonRun.html", "w", encoding="utf-8") as file:
+    # if not os.path.exists("output"):
+    #     os.makedirs("output")
+    with open("salmonRun.html", "w", encoding="utf-8") as file:
         file.write(html)
     subprocess.run(["node", "capture.js"])

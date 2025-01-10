@@ -8,7 +8,7 @@ import path from 'path'; // 用于处理文件路径
   });
 
   const page = await browser.newPage();
-  const filePath = path.resolve('output/salmonRun.html');
+  const filePath = path.resolve('salmonRun.html');
 
   // 加载 HTML 文件
   const response = await page.goto(`file://${filePath}`);
@@ -23,7 +23,7 @@ import path from 'path'; // 用于处理文件路径
   
   setTimeout(async () => {
     // 截图保存为文件
-    await page.screenshot({ path: 'output/output.png', fullPage: true });
+    await page.screenshot({ path: 'output.png', fullPage: true });
     console.log('Screenshot saved to output.png');
     await browser.close();
   }, 2000); // 延时 2000 毫秒 (2 秒)
