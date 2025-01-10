@@ -6,6 +6,7 @@ Salmon Run武器相关数据爬取
 ![愿你我屎拉的通](output.png)
 
 - [ ] adjust href
+- [ ] add type
 
 ## 参考
 
