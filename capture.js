@@ -17,7 +17,7 @@ import path from 'path'; // 用于处理文件路径
 
   // 设置截图尺寸
   await page.setViewport({
-    width: 1400, height: 350
+    width: 1000, height: 600
   });
 
   
