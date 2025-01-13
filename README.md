@@ -10,7 +10,7 @@ Salmon Run武器相关数据爬取
 - [x] add border
 - [ ] adjust height
 - [ ] adjust width
-- [ ] 场地，头目，时间显示
+- [x] 场地，头目，时间显示
 
 ## 参考
 

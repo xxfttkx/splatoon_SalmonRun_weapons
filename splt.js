@@ -28,7 +28,7 @@ var boss = curr.boss
 const res = {
    weapons: array,
    stage: curr.stage.name,
-   time: `[${convertUtcToChinaTime(curr.start_time)}, ${convertUtcToChinaTime(curr.end_time)}]`,
+   time: `${convertUtcToChinaTime(curr.start_time)} ~ ${convertUtcToChinaTime(curr.end_time)}`,
    boss: boss
 };
 
