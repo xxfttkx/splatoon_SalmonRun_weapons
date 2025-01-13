@@ -46,17 +46,11 @@ def fetch_weapon(url,weapon):
 if __name__ == "__main__":
     url = "https://wikiwiki.jp/splatoon3mix/%E3%82%B5%E3%83%BC%E3%83%A2%E3%83%B3%E3%83%A9%E3%83%B3/%E3%83%90%E3%82%A4%E3%83%88%E5%B0%82%E7%94%A8%E3%83%96%E3%82%AD%E3%81%AE%E8%A3%9C%E6%AD%A3"
     result = subprocess.run(["node", "splt.js"], stdout=subprocess.PIPE, text=True, encoding="utf-8")
-    stage = subprocess.run(["node", "stage.js"], stdout=subprocess.PIPE, text=True, encoding="utf-8")
-    config = stage.stdout
-    weapons = json.loads(result.stdout)
+    res = json.loads(result.stdout)
     html = "<head><meta charset=\"UTF-8\"></head><style>table{border-collapse: collapse;border: 1px solid black;margin:10px;}td, th {border: 1px solid black;}</style>"
-    for weapon in weapons:
+    for weapon in res['weapons']:
         html+=fetch_weapon(url,weapon)
-    # 保存到文件
-    # 检查 output 文件夹是否存在
-    # if not os.path.exists("output"):
-    #     os.makedirs("output")
-    html += "<p>"+config+"</p>"
+    html += "<p>"+res['stage']+": "+res['time']+"</p>"
     with open("salmonRun.html", "w", encoding="utf-8") as file:
         file.write(html)
     subprocess.run(["node", "capture.js"])
