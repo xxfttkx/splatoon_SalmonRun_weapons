@@ -24,10 +24,12 @@ var sr = await Splatoon3.getSalmonRun();
 var curr = sr.regularSchedules[0];
 var weapons = curr.weapons;
 var array = [weapons[0].name, weapons[1].name, weapons[2].name, weapons[3].name]
+var boss = curr.boss
 const res = {
    weapons: array,
    stage: curr.stage.name,
-   time: `[${convertUtcToChinaTime(curr.start_time)}, ${convertUtcToChinaTime(curr.end_time)}]`
+   time: `[${convertUtcToChinaTime(curr.start_time)}, ${convertUtcToChinaTime(curr.end_time)}]`,
+   boss: boss
 };
 
 console.log(JSON.stringify(res));
