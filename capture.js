@@ -13,11 +13,9 @@ import path from 'path'; // 用于处理文件路径
   // 加载 HTML 文件
   const response = await page.goto(`file://${filePath}`);
 
-  // await page.setContent((await response.buffer()).toString('utf8'));
-
   // 设置截图尺寸
   await page.setViewport({
-    width: 1000, height: 600
+    width: 1920/2, height: 1080/2
   });
 
   
@@ -27,7 +25,5 @@ import path from 'path'; // 用于处理文件路径
     console.log('Screenshot saved to output.png');
     await browser.close();
   }, 2000); // 延时 2000 毫秒 (2 秒)
-  
 
-  
 })();
