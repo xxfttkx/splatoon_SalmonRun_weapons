@@ -61,3 +61,11 @@ jobs:
           message: "Automated changes by GitHub Actions" # 提交信息
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的默认 token
+
+      # 使用 GitHub Releases
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+          gh release create "release-$TIMESTAMP" output.png --title "SalmonRun $TIMESTAMP" --notes "Auto-generated PNG"
