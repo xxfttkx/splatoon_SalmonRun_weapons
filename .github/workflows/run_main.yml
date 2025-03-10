@@ -63,8 +63,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的默认 token
 
       # 生成时间戳
-      - name: Set timestamp
-        run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+      - name: Set timestamp (CST/东八区)
+        run: echo "TIMESTAMP=$(TZ=Asia/Shanghai date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
 
       # **创建 GitHub Release**
       - name: Create GitHub Release
