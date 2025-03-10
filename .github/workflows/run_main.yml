@@ -62,10 +62,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的默认 token
 
-      # 使用 GitHub Releases
+      # 生成时间戳
+      - name: Set timestamp
+        run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+
+      # **创建 GitHub Release**
       - name: Create GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
-          gh release create "release-$TIMESTAMP" output.png --title "SalmonRun $TIMESTAMP" --notes "Auto-generated PNG"
+          gh release create "release-${{ env.TIMESTAMP }}" --title "Salmon Run ${{ env.TIMESTAMP }}" --notes "图片将在几秒后显示..."
+
+      # **上传 PNG**
+      - name: Upload PNG to Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "release-${{ env.TIMESTAMP }}" output.png
+
+      # **更新 Release 的 Notes，插入图片**
+      - name: Update Release Notes with Image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          IMAGE_URL="https://github.com/xxfttkx/splatoon_SalmonRun_weapons/releases/download/release-${{ env.TIMESTAMP }}/output.png"
+          gh release edit "release-${{ env.TIMESTAMP }}" --notes "![Salmon Run]($IMAGE_URL)"
