@@ -53,6 +53,16 @@ jobs:
         run: |
           python main.py
 
+      # Check if there are changes
+      - name: Check if there are changes
+        id: check_changes
+        run: |
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "HAS_CHANGES=false" >> $GITHUB_ENV
+          else
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+          fi
+      
       # 自动添加和提交更改
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
@@ -61,3 +71,32 @@ jobs:
           message: "Automated changes by GitHub Actions" # 提交信息
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的默认 token
+
+      # 生成时间戳
+      - name: Set timestamp (CST/东八区)
+        run: echo "TIMESTAMP=$(TZ=Asia/Shanghai date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
+
+      # **创建 GitHub Release**
+      - name: Create GitHub Release
+        if: env.HAS_CHANGES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "release-${{ env.TIMESTAMP }}" --title "Salmon Run ${{ env.TIMESTAMP }}" --notes "图片将在几秒后显示..."
+
+      # **上传 PNG**
+      - name: Upload PNG to Release
+        if: env.HAS_CHANGES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "release-${{ env.TIMESTAMP }}" output.png
+
+      # **更新 Release 的 Notes，插入图片**
+      - name: Update Release Notes with Image
+        if: env.HAS_CHANGES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          IMAGE_URL="https://github.com/xxfttkx/splatoon_SalmonRun_weapons/releases/download/release-${{ env.TIMESTAMP }}/output.png"
+          gh release edit "release-${{ env.TIMESTAMP }}" --notes "![Salmon Run]($IMAGE_URL)"
