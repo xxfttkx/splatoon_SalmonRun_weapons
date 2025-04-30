@@ -31,10 +31,12 @@ def fetch_weapon(url,weapon):
                 weapon_string = weapon_row.prettify()
                 thead_string = thead_string.replace("\n", "")
                 weapon_string = weapon_string.replace("\n", "")
+                # if no type data
                 if weapon_row.contents[0].text == weapon:
                     weapon_string = weapon_string.replace("<tr>", "<tr><td></td>", 1)
                 html = "<table>"+thead_string+weapon_string+"</table>" 
                 return html
+        # when weapon==random
         return "<table><td>"+weapon+"</td></table>" 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")

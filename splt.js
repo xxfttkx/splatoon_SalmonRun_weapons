@@ -22,8 +22,15 @@ Splatoon3.options.cache = {
 
 var sr = await Splatoon3.getSalmonRun();
 var curr = sr.regularSchedules[0];
+const now = new Date(); // 当前时间
+curr = sr.regularSchedules.find(schedule => {
+   const start = new Date(schedule.start_time);
+   const end = new Date(schedule.end_time);
+   return now >= start && now < end;
+ });
 var weapons = curr.weapons;
 var array = [weapons[0].name, weapons[1].name, weapons[2].name, weapons[3].name]
+// array = ["クマサン印のマニューバー","クマサン印のブラスター","クマサン印のローラー","クマサン印のチャージャー","クマサン印のスロッシャー","クマサン印のシェルター","クマサン印のストリンガー","クマサン印のワイパー"]
 var boss = curr.boss
 const res = {
    weapons: array,
